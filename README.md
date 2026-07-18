@@ -13,14 +13,35 @@ philosophical maxim that coined the behavior — the name is a mnemonic;
 the body is a concrete procedure the agent follows at the moment that
 matters.
 
-| Skill | You've seen this | What the skill makes the agent do |
-|---|---|---|
-| `socrates`<br>*"I know that I know nothing"* | An API that changed two years ago, asserted as current; a regulation quoted from memory. | Verify claims with a clock on them against a live source — or label them unverified. |
-| `popper`<br>*conjectures and refutations* | "Done — everything works!" — the tests were never run. | Refute its own work before delivering it; claim only what was actually checked. |
-| `heraclitus`<br>*"never the same river twice"* | The same failed fix retried a fifth time; a booking confirmed on last month's export. | Re-read what may have changed; in a failure loop, look at the state fresh. |
-| `hippocrates`<br>*primum non nocere* | The "useless" config block deleted — production down; forty members purged, no export. | Establish why it exists before touching it; explicit confirmation before the irreversible. |
-| `occam`<br>*the razor* | A forty-line script requested, a plugin architecture delivered — or a dashboard suite for a weekly status routine. | Deliver the simplest version that fully meets the need; cut speculation, never requested features. |
-| `epictetus`<br>*the dichotomy of control* | A workaround invented for missing credentials; someone else's decision made "to spare them the bother". | Act on what it controls; escalate the rest cleanly, once. |
+### `socrates` — *"I know that I know nothing"*
+
+*You've seen this:* an API that changed two years ago, asserted as current; a regulation quoted from memory.  
+**The skill:** verify claims with a clock on them against a live source — or label them unverified.
+
+### `popper` — *conjectures and refutations*
+
+*You've seen this:* "Done — everything works!" — the tests were never run.  
+**The skill:** refute its own work before delivering it; claim only what was actually checked.
+
+### `heraclitus` — *"never the same river twice"*
+
+*You've seen this:* the same failed fix retried a fifth time; a booking confirmed on last month's export.  
+**The skill:** re-read what may have changed; in a failure loop, look at the state fresh.
+
+### `hippocrates` — *primum non nocere*
+
+*You've seen this:* the "useless" config block deleted — production down; forty members purged, no export.  
+**The skill:** establish why it exists before touching it; explicit confirmation before the irreversible.
+
+### `occam` — *the razor*
+
+*You've seen this:* a forty-line script requested, a plugin architecture delivered — or a dashboard suite for a weekly status routine.  
+**The skill:** deliver the simplest version that fully meets the need; cut speculation, never requested features.
+
+### `epictetus` — *the dichotomy of control*
+
+*You've seen this:* a workaround invented for missing credentials; someone else's decision made "to spare them the bother".  
+**The skill:** act on what it controls; escalate the rest cleanly, once.
 
 ## Install
 

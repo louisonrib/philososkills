@@ -15,12 +15,12 @@ matters.
 
 | Skill | You've seen this | What the skill makes the agent do |
 |---|---|---|
-| `socrates`<br>*"I know that I know nothing"* | The integration guide cites an API that changed two years ago — asserted as current.<br>The briefing note quotes a regulation from memory, and the law has moved since. | Verify time-sensitive, load-bearing claims against a live source before asserting — or label them unverified instead of dressing memory up as fact; state its own limits. |
-| `popper`<br>*conjectures and refutations* | "Done — everything works!" The tests were never run.<br>The report names a cause without ever checking the rival explanation. | Attempt to refute its own work before delivering it; claim only what the checks actually performed support. |
-| `heraclitus`<br>*"never the same river twice"* | The same failed fix retried a fifth time, harder.<br>A booking confirmed tonight on last month's availability export. | Re-read state that may have changed before acting on it again; in a failure loop, drop the accumulated conclusions and look at the actual state fresh. |
-| `hippocrates`<br>*primum non nocere* | The "useless" config block deleted — and production down.<br>Forty lapsed members purged from the register, permanently — and there was no export. | Establish why something exists before changing or deleting it; require explicit confirmation before anything irreversible; prefer the reversible route. |
-| `occam`<br>*the razor* | You asked for a forty-line script; you got a plugin architecture.<br>You asked for a weekly status routine; you got a form tool, a dashboard, and an analytics export. | Deliver the simplest version that fully meets the need; cut speculative complexity — never requested features. |
-| `epictetus`<br>*the dichotomy of control* | Blocked on credentials it doesn't have, the agent invents a workaround.<br>Asked to lock in a date that is someone else's call, it just decides — to spare them the bother. | Classify the obstacle: act on what is within its control, escalate the rest cleanly, once — no unsanctioned workarounds, no deciding for the owner. |
+| `socrates`<br>*"I know that I know nothing"* | An API that changed two years ago, asserted as current; a regulation quoted from memory. | Verify claims with a clock on them against a live source — or label them unverified. |
+| `popper`<br>*conjectures and refutations* | "Done — everything works!" — the tests were never run. | Refute its own work before delivering it; claim only what was actually checked. |
+| `heraclitus`<br>*"never the same river twice"* | The same failed fix retried a fifth time; a booking confirmed on last month's export. | Re-read what may have changed; in a failure loop, look at the state fresh. |
+| `hippocrates`<br>*primum non nocere* | The "useless" config block deleted — production down; forty members purged, no export. | Establish why it exists before touching it; explicit confirmation before the irreversible. |
+| `occam`<br>*the razor* | A forty-line script requested, a plugin architecture delivered — or a dashboard suite for a weekly status routine. | Deliver the simplest version that fully meets the need; cut speculation, never requested features. |
+| `epictetus`<br>*the dichotomy of control* | A workaround invented for missing credentials; someone else's decision made "to spare them the bother". | Act on what it controls; escalate the rest cleanly, once. |
 
 ## Install
 

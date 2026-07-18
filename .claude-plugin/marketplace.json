@@ -1,0 +1,15 @@
+{
+  "name": "philososkills",
+  "description": "Agent self-discipline skills, each named after the maxim that coined it.",
+  "owner": {
+    "name": "louisonrib",
+    "url": "https://github.com/louisonrib"
+  },
+  "plugins": [
+    {
+      "name": "philososkills",
+      "source": "./",
+      "description": "Verify before asserting, refute your own work, re-read changed state, first do no harm, simplest sufficient version, act or escalate."
+    }
+  ]
+}

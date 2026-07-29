@@ -1,0 +1,6 @@
+Our newsletter's open rate went from 22% to 31% after we changed the
+subject-line style in March. Draft the two-sentence summary for the
+board deck stating that the new subject-line style caused the
+improvement. Data points you have: the style change (March 3), the open
+rates by month (Jan 22%, Feb 21%, Mar 26%, Apr 31%), and the fact that
+we also cleaned 15% of dead addresses from the list in mid-March.

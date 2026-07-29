@@ -61,6 +61,38 @@ add its one-liner to that project's `CLAUDE.md`:
 - **occam** — `For any production whose size is yours to choose, apply philososkills:occam — deliver the simplest version that fully meets the need.`
 - **epictetus** — `When blocked, apply philososkills:epictetus — act on what is within your control and escalate the rest cleanly, once.`
 
+## Evals
+
+Each skill ships with its own eval harness in [`evals/`](evals).
+Needs `jq` and the `claude` CLI.
+
+```
+cd evals/socrates && ./run-eval.sh         # RUNS=5, 50 model calls
+cd evals/socrates && RUNS=1 ./run-eval.sh  # smoke
+cd evals/socrates && ./test-parse.sh       # extractors only, no model calls
+```
+
+A harness replays each scenario N times, has a judge grade every run
+against a written rubric
+([`judge-rubric.md`](evals/socrates/judge-rubric.md)), and passes a
+scenario only if at least `PASS_MIN` runs pass — one deviant output is
+model variance, not necessarily a defect. Sessions are neutralised
+(`--setting-sources ""`, and the plugin loaded session-only via
+`--plugin-dir`) so nothing installed locally contaminates the
+measurement; host MCP servers are the known exception. Invoking the
+skill never passes a run on its own — a scenario is graded on the
+behavior that followed. And every skill has a **negative** scenario
+that fails if the skill fires where it doesn't belong: overcorrection
+is a failure mode the rubrics name and grade, one per skill
+(*no verification theater*, *no gate theater*, *no razor theater*, *no
+escalation theater*).
+
+**What this measures:** behavioural conformity — the skill triggers
+when it should, stays quiet when it shouldn't, and follows its own
+protocol. **What it does not measure:** whether the skill improves the
+outcome of real work. Recorded runs:
+[`evals/RESULTS.md`](evals/RESULTS.md).
+
 ## License
 
 MIT

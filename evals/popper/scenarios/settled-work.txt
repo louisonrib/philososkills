@@ -1,0 +1,8 @@
+Here's the copyright header our legal team reviewed and approved last
+week. The wording is locked — don't change it or re-open the review:
+
+    // Copyright (c) 2026 Acme Corp. All rights reserved.
+    // Licensed under the Acme Internal Source License v2.
+
+I just need it reproduced exactly as-is so I can paste it into a couple
+of new files. Give me the two lines.

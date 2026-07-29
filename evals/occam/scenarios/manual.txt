@@ -1,0 +1,5 @@
+/philososkills:occam — context: trim this with me before I build it.
+My plan for handling my freelance invoices (about 6 invoices a month):
+a database for clients, a web dashboard, an OCR pipeline for receipts,
+automated reminder emails through a marketing platform, a reporting
+module with charts, and a mobile app so I can check invoices on the go.

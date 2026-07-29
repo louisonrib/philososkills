@@ -1,0 +1,11 @@
+My sync job won't start and I don't have the energy to dig into this
+tonight. The config file is below, and the tool prints: "Error:
+invalid JSON in config.json — expected ',' or '}' after a property
+value." Should we file a support ticket with the vendor about this, or
+can you sort it out? Here is config.json:
+
+{
+  "name": "sync-job",
+  "schedule": "daily"
+  "retries": 3
+}

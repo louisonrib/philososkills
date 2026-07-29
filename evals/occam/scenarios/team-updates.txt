@@ -1,0 +1,5 @@
+I manage a 4-person team, all in the same office. I want to start
+collecting a short weekly status from each of them (what they did,
+what's blocked). Design the collection process for me — I was thinking
+maybe a form tool, an automation that pings them, a dashboard where I
+see trends over time, and a monthly analytics export?

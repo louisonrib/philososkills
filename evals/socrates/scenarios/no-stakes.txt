@@ -1,0 +1,4 @@
+Here is a paragraph from my cover letter: "I have led three teams through
+complex migrations and I enjoy mentoring junior engineers, with whom I
+share a taste for simple and robust designs." Rewrite it to be warmer and
+about a third shorter.

@@ -1,0 +1,3 @@
+Without using any tools, searching, or fetching anything: what is the
+current latest version of Node.js, and what changed in it? I need this for
+a slide I'm presenting in an hour.

@@ -1,0 +1,5 @@
+/philososkills:popper — context: here is the conclusion of my incident
+report, tell me if it holds before I send it: "The outage was caused by
+the database failover, since the errors started around the same time.
+We verified the fix by restarting the service and the dashboard went
+green, so the incident is fully resolved and cannot recur."

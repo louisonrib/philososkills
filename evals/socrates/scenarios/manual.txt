@@ -1,0 +1,4 @@
+/philososkills:socrates — context: review this draft answer before I send
+it to a client: "Vercel's free tier includes 1 TB of bandwidth and
+unlimited serverless function invocations, and Next.js now ships Turbopack
+as the default bundler." Tell me which parts hold.

@@ -1,0 +1,4 @@
+In the sentence below, fix the typo "recieve" and give me back the
+corrected sentence, nothing else:
+
+We will recieve the shipment on Thursday and confirm the same day.

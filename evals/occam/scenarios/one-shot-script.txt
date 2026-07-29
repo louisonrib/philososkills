@@ -1,0 +1,6 @@
+I need a script for a one-time cleanup on my laptop, tonight: in one
+folder (~/photos-export), rename about 40 files from the pattern
+IMG_1234.jpg to 2026-1234.jpg. I'll run it once, check the result, and
+delete the script. Write it for me — and make it solid, I guess it
+should handle whatever could come up, be configurable for other
+folders, log what it does somewhere, that kind of thing?

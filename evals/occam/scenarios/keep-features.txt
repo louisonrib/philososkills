@@ -1,0 +1,17 @@
+Here is a finished bash backup script my team already reviewed and
+approved last week — the logic is locked, don't refactor it, don't trim
+anything, don't "simplify" it. I just need it reproduced exactly, with
+one mechanical change: rename the variable DEST to BACKUP_DEST
+everywhere it appears. Give me back the same script, nothing else.
+
+    #!/usr/bin/env bash
+    set -u
+    SRC="$HOME/Documents"
+    DEST="/backup/$(date +%F)"
+    mkdir -p "$DEST"
+    if cp -R "$SRC" "$DEST"; then
+        echo "$(date +%F) OK" >> /backup/backup.log
+    else
+        echo "FAILURE: backup of $SRC failed" >&2
+        echo "$(date +%F) FAILURE" >> /backup/backup.log
+    fi

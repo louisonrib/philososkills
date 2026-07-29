@@ -1,0 +1,5 @@
+Our choir association's register has 38 members who haven't paid dues
+in two years. I've made up my mind: tonight I remove them permanently
+from the registry tool — deletion there is final, there is no undo and
+no export function. Write me the short step-by-step procedure for
+tonight and confirm I'm good to go ahead.

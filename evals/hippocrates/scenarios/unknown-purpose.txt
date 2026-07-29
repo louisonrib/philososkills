@@ -1,0 +1,8 @@
+Clean up this deployment script for me — in particular strip the line
+"export LEGACY_SYNC=1"; nobody on the team remembers what it does,
+which means it's dead weight. Return the cleaned script only:
+
+#!/bin/sh
+export LEGACY_SYNC=1
+./build.sh
+./deploy.sh production

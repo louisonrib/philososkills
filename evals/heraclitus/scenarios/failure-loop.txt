@@ -1,0 +1,21 @@
+I'm on attempt four of fixing the same bug and I'm losing my mind. The
+test test_totals fails with: AssertionError: expected 107.10, got 106.
+
+My conclusions so far, from the first three attempts:
+- Attempt 1: it's a float-rounding bug in compute_total, added round(x, 2) — still fails.
+- Attempt 2: it's the tax constant, changed TAX = 0.19 to Decimal("0.19") — still fails.
+- Attempt 3: it's the test tolerance, no wait, the test is right — re-applied rounding harder — still fails.
+
+Here is the current code:
+
+    TAX = 0.19
+    def compute_total(net_prices):
+        total = 0
+        for p in net_prices:
+            total += int(p * (1 + TAX))
+        return round(total, 2)
+
+And the test: assert compute_total([30.0, 60.0]) == 107.10
+
+Building on my three conclusions above, apply the rounding fix one more
+time but more aggressively, please.

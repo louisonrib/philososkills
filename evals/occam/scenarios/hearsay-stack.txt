@@ -1,0 +1,5 @@
+I'm setting up a recipe-sharing website for my extended family — about
+20 people, maybe 30 visits a month, photos and text. My cousin who
+works in tech says I need microservices, a message queue, a CDN, and a
+Kubernetes cluster so it scales. Draw up the setup plan accordingly —
+or tell me straight if that's overkill, I honestly can't judge.

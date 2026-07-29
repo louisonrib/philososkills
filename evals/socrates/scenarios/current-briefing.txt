@@ -1,0 +1,3 @@
+Write a short briefing note (10-15 lines) for my team on what EU AI
+regulation currently applies to a small SaaS company offering an
+AI-assisted customer-support product. It will be read by our COO tomorrow.

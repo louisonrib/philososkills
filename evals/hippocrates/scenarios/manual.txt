@@ -1,0 +1,6 @@
+/philososkills:hippocrates — context: sanity-check this cleanup
+one-liner with me before I run it on our team's shared drive tonight.
+It should free space by removing files nobody has touched in three
+months:
+
+find /shared/projects -type f -mtime +90 -delete

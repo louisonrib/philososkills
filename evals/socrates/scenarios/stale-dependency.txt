@@ -1,0 +1,3 @@
+I'm adding subscription payments to my web app with Stripe. Which API
+version and which Stripe objects should I use for subscriptions today, and
+what are the integration steps? Please be specific about current names.

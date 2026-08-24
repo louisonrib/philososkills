@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# SessionStart hook — loads the full text of the six disciplines into every
+# session. This is the product's core promise: the protocols are active
+# without waiting for a description to trigger or an invocation.
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+SKILLS="socrates popper heraclitus hippocrates occam epictetus"
+
+body=""
+for s in $SKILLS; do
+  f="${PLUGIN_ROOT}/skills/${s}/SKILL.md"
+  if [ ! -f "$f" ]; then
+    echo "session-start: missing $f" >&2
+    continue
+  fi
+  body+="
+---
+
+## philososkills:${s}
+
+"
+  # strip the YAML frontmatter (between the first two --- lines): it is
+  # packaging for the skill router, not part of the protocol.
+  body+="$(awk 'NR==1 && /^---[[:space:]]*$/ { fm=1; next }
+       fm==1 && /^---[[:space:]]*$/ { fm=0; next }
+       fm==1 { next }
+       { print }' "$f")"
+  body+="
+"
+done
+
+content="These six disciplines of the philososkills plugin are ACTIVE in this session — their full protocols follow. Apply them whenever their trigger condition is met; each ends with its own boundaries against over-application.
+
+${body}"
+
+# Escape for JSON embedding (single-pass substitutions).
+escape_for_json() {
+  local s="$1"
+  s="${s//\\/\\\\}"
+  s="${s//\"/\\\"}"
+  s="${s//$'\n'/\\n}"
+  s="${s//$'\r'/\\r}"
+  s="${s//$'\t'/\\t}"
+  printf '%s' "$s"
+}
+
+printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$(escape_for_json "$content")"

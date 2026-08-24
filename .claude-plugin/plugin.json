@@ -1,6 +1,6 @@
 {
   "name": "philososkills",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Claude skills that make an agent verify before asserting, refute its own work, re-read changed state, protect what it doesn't understand, keep things simple, and escalate what it cannot control.",
   "author": {
     "name": "louisonrib",

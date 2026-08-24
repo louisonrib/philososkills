@@ -12,9 +12,10 @@ description: >
 
 # Setup — wire philososkills into a CLAUDE.md
 
-The six disciplines live as full protocols in this plugin and load when
-invoked. This skill writes their compressed one-line versions into a
-CLAUDE.md so they apply permanently, without waiting for a trigger. It is
+By default the plugin loads the full protocols into every session through its
+SessionStart hook. This skill manages the **lightweight alternative**: a
+compressed one-line block in a CLAUDE.md, for users who would rather spend
+~200 tokens than ~3k, or who want only a subset of the disciplines. It is
 idempotent: a fenced managed block (`<!-- philososkills:start -->` … `end`)
 is updated in place, never duplicated.
 

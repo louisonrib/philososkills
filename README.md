@@ -49,15 +49,16 @@ agent's control. You can also invoke any skill explicitly:
 /philososkills:occam — trim this plan with me before I build it
 ```
 
-## Always-on opt-in
+## Always-on by default
 
-The easiest path: run `/philososkills:setup`. It asks whether the rules
-should load globally (`~/.claude/CLAUDE.md`) or in this project
-(`./CLAUDE.md`), which disciplines to include, detects an existing setup
-(including a dedicated imported file) before writing anything, and keeps its
-managed block idempotent — re-running it updates, never duplicates.
+Installing the plugin wires a `SessionStart` hook: the **full text of all
+six protocols** is loaded into every session — no invocation, no waiting for
+a description to trigger. Cost: ~3k tokens of context per session.
 
-Prefer doing it by hand? Add the one-liners you want to your `CLAUDE.md`:
+Want it lighter instead? Run `/philososkills:setup`: it installs a compressed
+one-liner block (global `~/.claude/CLAUDE.md` or project `./CLAUDE.md`),
+detects any existing setup first, and stays idempotent. Prefer doing it by
+hand? Add the one-liners you want to your `CLAUDE.md`:
 
 - **socrates** — `Before asserting any time-sensitive fact (versions, prices, laws, availability), or building on an inference of your own, a negative result, or a premise you were handed, apply philososkills:socrates — verify against a live source, or hold the claim to what was actually observed.`
 - **popper** — `Before delivering any conclusion or artifact as done or correct, apply philososkills:popper — refute the instrument before the result, and calibrate the claim to the checks actually performed.`

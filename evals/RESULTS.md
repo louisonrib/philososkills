@@ -110,3 +110,13 @@ that silently returns nothing. All six pass as of 2026-07-29.
 
 The `SKILL.md` files under `skills/` were byte-identical to the published ones at the time of the
 runs above.
+
+## Amended skills — reference re-run pending
+
+On 2026-08-24, `socrates` and `popper` were amended
+(decision recorded in the dev repo: louisonrib/philososkills-dev#13). The reference rows above predate
+that amendment: their wording no longer describes the current `skills/` files. Before the next
+public sync, re-run both harnesses (`cd evals/<skill> && RUNS=5 ./run-eval.sh`) and add fresh
+dated rows here. An interim content validation on a substitute engine (30 cells: socrates 5×5
+all scenarios PASS including the negative; popper `untested-fix` 5/5) is recorded in the dev
+repo's tracker — it does not replace this one.

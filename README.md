@@ -15,8 +15,8 @@ matters.
 
 | Skill | You've seen this | What the skill makes the agent do |
 |---|---|---|
-| `socrates`<br>*"I know that I know nothing"* | An API that changed two years ago, asserted as current; a regulation quoted from memory. | Verify claims with a clock on them against a live source — or label them unverified. |
-| `popper`<br>*conjectures and refutations* | "Done — everything works!" — the tests were never run. | Refute its own work before delivering it; claim only what was actually checked. |
+| `socrates`<br>*"I know that I know nothing"* | An API that changed two years ago, asserted as current; one failed request generalised into "the site is unreadable". | Verify claims with a clock on them against a live source — and hold an inference, a negative, or a handed-down premise to what was actually observed. |
+| `popper`<br>*conjectures and refutations* | "Done — everything works!" — the tests were never run; "no anomalies found" — from a detector that measured something else. | Refute its own work before delivering it — the instrument before the result; claim only what was actually checked. |
 | `heraclitus`<br>*"never the same river twice"* | The same failed fix retried a fifth time; a booking confirmed on last month's export. | Re-read what may have changed; in a failure loop, look at the state fresh. |
 | `hippocrates`<br>*primum non nocere* | The "useless" config block deleted — production down; forty members purged, no export. | Establish why it exists before touching it; explicit confirmation before the irreversible. |
 | `occam`<br>*the razor* | A forty-line script requested, a plugin architecture delivered — or a dashboard suite for a weekly status routine. | Deliver the simplest version that fully meets the need; cut speculation, never requested features. |
@@ -54,8 +54,8 @@ agent's control. You can also invoke any skill explicitly:
 If you want one of these disciplines applied permanently in a project,
 add its one-liner to that project's `CLAUDE.md`:
 
-- **socrates** — `Before asserting any time-sensitive fact (versions, prices, laws, availability), apply philososkills:socrates — verify against a live source or label the claim as unverified.`
-- **popper** — `Before delivering any conclusion or artifact as done or correct, apply philososkills:popper — attempt to refute it and calibrate the claim to the checks actually performed.`
+- **socrates** — `Before asserting any time-sensitive fact (versions, prices, laws, availability), or building on an inference of your own, a negative result, or a premise you were handed, apply philososkills:socrates — verify against a live source, or hold the claim to what was actually observed.`
+- **popper** — `Before delivering any conclusion or artifact as done or correct, apply philososkills:popper — refute the instrument before the result, and calibrate the claim to the checks actually performed.`
 - **heraclitus** — `Before re-acting on previously read state, or after a repeated failure, apply philososkills:heraclitus — re-read the current state and break the loop with a fresh look.`
 - **hippocrates** — `Before changing anything whose purpose is not established, or doing anything irreversible, apply philososkills:hippocrates — establish why it exists and require explicit confirmation.`
 - **occam** — `For any production whose size is yours to choose, apply philososkills:occam — deliver the simplest version that fully meets the need.`

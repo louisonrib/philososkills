@@ -63,7 +63,8 @@ keeps its block idempotent: re-running it updates, never duplicates. When the
 file is in a state it cannot edit with certainty, it says what it saw and
 hands the file back to you.
 
-By hand, under Claude Code, it is six lines in your `CLAUDE.md`:
+By hand, under Claude Code, it is six lines in your `CLAUDE.md` — these
+paths for a marketplace install:
 
 ```
 @~/.claude/plugins/marketplaces/philososkills/skills/socrates/SKILL.md
@@ -75,7 +76,7 @@ By hand, under Claude Code, it is six lines in your `CLAUDE.md`:
 ```
 
 An `@` line inlines the file it names, so the whole protocol reaches the
-session rather than a reminder that it exists, and the path above follows the
+session rather than a reminder that it exists, and that path follows the
 plugin as it updates. Leave a line out to keep that discipline on
 description-triggering alone. The six together add about 3 500 tokens to
 every session — the price of not depending on a trigger.

@@ -171,7 +171,13 @@ skill never had to fire on its own description, and local skills unrelated to th
 scope. On the negative scenario the runners record `CONSULTED: none`: `socrates` was never a
 candidate to fire, so over-triggering went untested by the very run that claimed to have tested it.
 
-## `setup` — no harness
+## `setup-philososkills` — no harness
 
 The seventh skill has no eval. The deterministic artefact its first test covered was a bundled
 script, since removed; what is left to measure is behaviour, and that harness is still to write.
+
+Nothing in this file measures the always-on install, and no row here should be read as doing so.
+The six rows above are produced with `--setting-sources ""`, which loads no memory file at all —
+verified on 2026-08-25 by capturing the request the CLI actually sends. So an always-on block on
+the machine running the harness cannot reach these numbers, and equally: these numbers say nothing
+about whether loading a protocol up front beats letting its description fire.

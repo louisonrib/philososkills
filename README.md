@@ -11,8 +11,8 @@ philososkills is six Claude Code skills that install a discipline
 against each of these failure modes. Each skill is named after the
 philosophical maxim that coined the behavior — the name is a mnemonic;
 the body is a concrete procedure the agent follows at the moment that
-matters. A seventh skill, `setup`, wires the six into a `CLAUDE.md` so
-they apply without being invoked.
+matters. A seventh skill, `setup-philososkills`, loads the six into your
+agent's memory file so they apply without being invoked.
 
 | Skill | You've seen this | What the skill makes the agent do |
 |---|---|---|
@@ -52,22 +52,36 @@ agent's control. You can also invoke any skill explicitly:
 
 ## Always-on opt-in
 
-The easiest path: run `/philososkills:setup`. It asks whether the rules
-should load globally (`~/.claude/CLAUDE.md`) or in this project
-(`./CLAUDE.md`), which disciplines to include, detects an existing setup
-(including a dedicated imported file) before writing anything, and keeps its
-managed block idempotent — re-running it updates, never duplicates. When the
+A skill fires on its own description, and that is the fragile link: a
+protocol the agent never loads is a protocol it never applies. To have all
+six in context from the first turn, run `/philososkills:setup-philososkills`.
+
+It picks the memory file your harness actually reads — `CLAUDE.md` under
+Claude Code, `AGENTS.md` elsewhere — asks for global or project scope and
+which disciplines, reads what is already there before writing anything, and
+keeps its block idempotent: re-running it updates, never duplicates. When the
 file is in a state it cannot edit with certainty, it says what it saw and
 hands the file back to you.
 
-Prefer doing it by hand? Add the one-liners you want to your `CLAUDE.md`:
+By hand, under Claude Code, it is six lines in your `CLAUDE.md`:
 
-- **socrates** — `Before asserting any time-sensitive fact (versions, prices, laws, availability), or building on an inference of your own, a negative result, or a premise you were handed, apply philososkills:socrates — verify against a live source, or hold the claim to what was actually observed.`
-- **popper** — `Before delivering any conclusion or artifact as done or correct, apply philososkills:popper — refute the instrument before the result, and calibrate the claim to the checks actually performed.`
-- **heraclitus** — `Before re-acting on previously read state, or after a repeated failure, apply philososkills:heraclitus — re-read the current state and break the loop with a fresh look.`
-- **hippocrates** — `Before changing anything whose purpose is not established, or doing anything irreversible, apply philososkills:hippocrates — establish why it exists and require explicit confirmation.`
-- **occam** — `For any production whose size is yours to choose, apply philososkills:occam — deliver the simplest version that fully meets the need.`
-- **epictetus** — `When blocked, apply philososkills:epictetus — act on what is within your control and escalate the rest cleanly, once.`
+```
+@~/.claude/plugins/marketplaces/philososkills/skills/socrates/SKILL.md
+@~/.claude/plugins/marketplaces/philososkills/skills/popper/SKILL.md
+@~/.claude/plugins/marketplaces/philososkills/skills/heraclitus/SKILL.md
+@~/.claude/plugins/marketplaces/philososkills/skills/hippocrates/SKILL.md
+@~/.claude/plugins/marketplaces/philososkills/skills/occam/SKILL.md
+@~/.claude/plugins/marketplaces/philososkills/skills/epictetus/SKILL.md
+```
+
+An `@` line inlines the file it names, so the whole protocol reaches the
+session rather than a reminder that it exists, and the path above follows the
+plugin as it updates. Leave a line out to keep that discipline on
+description-triggering alone. The six together add about 3 500 tokens to
+every session — the price of not depending on a trigger.
+
+`AGENTS.md` defines no import mechanism, so outside Claude Code the skill
+copies the protocol text in instead, and you re-run it after a plugin update.
 
 ## Evals
 
@@ -87,7 +101,8 @@ scenario only if at least `PASS_MIN` runs pass — one deviant output is
 model variance, not necessarily a defect. Sessions are neutralised
 (`--setting-sources ""`, and the plugin loaded session-only via
 `--plugin-dir`) so nothing installed locally contaminates the
-measurement; host MCP servers are the known exception. Invoking the
+measurement — an always-on block included, since that flag loads no
+memory file at all; host MCP servers are the known exception. Invoking the
 skill never passes a run on its own — a scenario is graded on the
 behavior that followed. And every skill has a **negative** scenario
 that fails if the skill fires where it doesn't belong: overcorrection

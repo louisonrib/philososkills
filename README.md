@@ -11,7 +11,8 @@ philososkills is six Claude Code skills that install a discipline
 against each of these failure modes. Each skill is named after the
 philosophical maxim that coined the behavior — the name is a mnemonic;
 the body is a concrete procedure the agent follows at the moment that
-matters.
+matters. A seventh skill, `setup`, wires the six into a `CLAUDE.md` so
+they apply without being invoked.
 
 | Skill | You've seen this | What the skill makes the agent do |
 |---|---|---|
@@ -49,16 +50,17 @@ agent's control. You can also invoke any skill explicitly:
 /philososkills:occam — trim this plan with me before I build it
 ```
 
-## Always-on by default
+## Always-on opt-in
 
-Installing the plugin wires a `SessionStart` hook: the **full text of all
-six protocols** is loaded into every session — no invocation, no waiting for
-a description to trigger. Cost: ~3k tokens of context per session.
+The easiest path: run `/philososkills:setup`. It asks whether the rules
+should load globally (`~/.claude/CLAUDE.md`) or in this project
+(`./CLAUDE.md`), which disciplines to include, detects an existing setup
+(including a dedicated imported file) before writing anything, and keeps its
+managed block idempotent — re-running it updates, never duplicates. When the
+file is in a state it cannot edit with certainty, it says what it saw and
+hands the file back to you.
 
-Want it lighter instead? Run `/philososkills:setup`: it installs a compressed
-one-liner block (global `~/.claude/CLAUDE.md` or project `./CLAUDE.md`),
-detects any existing setup first, and stays idempotent. Prefer doing it by
-hand? Add the one-liners you want to your `CLAUDE.md`:
+Prefer doing it by hand? Add the one-liners you want to your `CLAUDE.md`:
 
 - **socrates** — `Before asserting any time-sensitive fact (versions, prices, laws, availability), or building on an inference of your own, a negative result, or a premise you were handed, apply philososkills:socrates — verify against a live source, or hold the claim to what was actually observed.`
 - **popper** — `Before delivering any conclusion or artifact as done or correct, apply philososkills:popper — refute the instrument before the result, and calibrate the claim to the checks actually performed.`
@@ -69,8 +71,8 @@ hand? Add the one-liners you want to your `CLAUDE.md`:
 
 ## Evals
 
-Each skill ships with its own eval harness in [`evals/`](evals).
-Needs `jq` and the `claude` CLI.
+Each of the six disciplines ships with its own eval harness in
+[`evals/`](evals). Needs `jq` and the `claude` CLI.
 
 ```
 cd evals/socrates && ./run-eval.sh         # RUNS=5, 50 model calls

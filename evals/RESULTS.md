@@ -12,7 +12,7 @@ Model: `sonnet` for both the assistant under test and the judge, on every run be
 ## Reference runs — `RUNS=5`, `PASS_MIN=4`
 
 The harness default. A scenario passes only if at least 4 of its 5 runs pass, because one deviant
-output is model variance rather than a defect. Each skill has the same scenario shape: three
+output is model variance rather than a defect. Each of the six has the same scenario shape: three
 situations that should trigger it, one explicit `/philososkills:<skill>` invocation, and one
 **negative** scenario that passes only if the skill does *not* fire.
 
@@ -113,10 +113,20 @@ runs above.
 
 ## Amended skills — reference re-run pending
 
-On 2026-08-24, `socrates` and `popper` were amended
-(decision recorded in the dev repo: louisonrib/philososkills-dev#13). The reference rows above predate
+On 2026-08-24, `socrates` and `popper` were amended. The reference rows above predate
 that amendment: their wording no longer describes the current `skills/` files. Before the next
 public sync, re-run both harnesses (`cd evals/<skill> && RUNS=5 ./run-eval.sh`) and add fresh
-dated rows here. An interim content validation on a substitute engine (30 cells: socrates 5×5
-all scenarios PASS including the negative; popper `untested-fix` 5/5) is recorded in the dev
-repo's tracker — it does not replace this one.
+dated rows here.
+
+An interim validation was run on a substitute engine while the API was rate-limited. **It is not
+evidence for the rows above and it is not evidence about triggering.** Its runners were handed the
+`SKILL.md` text to follow, in sessions that were not neutralised — so the skill never had to fire
+on its own description, and local skills unrelated to this plugin were in scope. On the negative
+scenario (`no-stakes`) the runners record `CONSULTED: none`: socrates was never a candidate to
+fire, so the one risk this pass carries — a widened description over-triggering — went untested.
+The published harness is the only instrument that measures it.
+
+## `setup` — no harness
+
+The seventh skill has no eval. The deterministic artefact its first test covered was a bundled
+script, since removed; what is left to measure is behaviour, and that harness is still to write.

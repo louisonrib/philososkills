@@ -99,6 +99,12 @@ $text" \
   if ! jq -e . "$OUT/$1-r$2.judge.json" >/dev/null 2>&1; then
     echo "error" > "$OUT/$1-r$2.verdict"; return
   fi
+  # Parsing is not grading. Both fields are read with `// false` below, and
+  # false is exactly what a negative scenario needs to pass — so a judge that
+  # answers "{}" turns a graded-nothing run green. Require the fields.
+  if ! jq -e 'has("simplest_sufficient_full") and has("razor_applied")' "$OUT/$1-r$2.judge.json" >/dev/null 2>&1; then
+    echo "error" > "$OUT/$1-r$2.verdict"; return
+  fi
   local judged; judged="$(jq -r '.simplest_sufficient_full // false' "$OUT/$1-r$2.judge.json" 2>/dev/null || echo false)"
   local triggered; triggered="$(jq -r '.razor_applied // false' "$OUT/$1-r$2.judge.json" 2>/dev/null || echo false)"
   local verdict="fail"

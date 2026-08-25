@@ -104,27 +104,72 @@ behaviour the skill installs.
 
 ## Extractor self-check — no model calls
 
-`test-parse.sh` runs the three stream-JSON extractors of `run-eval.sh` against a recorded capture
-in `fixtures/sample-run.jsonl`. It is what proves a green report is not an artefact of a parser
-that silently returns nothing. All six pass as of 2026-07-29.
+`test-parse.sh` runs the stream-JSON extractors of `run-eval.sh` against a recorded capture in
+`fixtures/sample-run.jsonl`, and against a run the CLI refused. It is what proves a green report is
+not an artefact of a parser that returns nothing — or, worse, something wrong. All six pass, 4/4.
 
-The `SKILL.md` files under `skills/` were byte-identical to the published ones at the time of the
-runs above.
+Three defects in the harness itself were fixed on 2026-08-25, each of which could make a report
+mean less than it appeared to. They are listed here because they bound what the July rows are
+worth:
 
-## Amended skills — reference re-run pending
+- A batch the API refused was reported as five behavioural `FAIL`s. Refused runs now report
+  `ERROR`, which is never green and never silently a failure of the skill.
+- A refused run returns `is_error: true` with the refusal text in `.result`. That text reached the
+  judge as the assistant's answer, and on a **negative** scenario "no verification seen" scored a
+  pass — so a rate-limited batch could report green on the scenarios that matter most. The
+  extractor now ignores refused runs.
+- A judge that answered `{}` parsed, and both fields then read as `false` — again exactly what a
+  negative scenario needs to pass. The verdict now requires the fields to be present.
 
-On 2026-08-24, `socrates` and `popper` were amended. The reference rows above predate
-that amendment: their wording no longer describes the current `skills/` files. Before the next
-public sync, re-run both harnesses (`cd evals/<skill> && RUNS=5 ./run-eval.sh`) and add fresh
-dated rows here.
+All three were found and fixed without a model call, by replaying recorded runs against a stubbed
+CLI. The July rows above were produced before any of them existed.
 
-An interim validation was run on a substitute engine while the API was rate-limited. **It is not
-evidence for the rows above and it is not evidence about triggering.** Its runners were handed the
-`SKILL.md` text to follow, in sessions that were not neutralised — so the skill never had to fire
-on its own description, and local skills unrelated to this plugin were in scope. On the negative
-scenario (`no-stakes`) the runners record `CONSULTED: none`: socrates was never a candidate to
-fire, so the one risk this pass carries — a widened description over-triggering — went untested.
-The published harness is the only instrument that measures it.
+## Amended skills — `socrates` re-run, `popper` outstanding
+
+On 2026-08-24, `socrates` and `popper` were amended. The July rows above predate that amendment:
+their wording no longer describes the current `skills/` files.
+
+### `socrates` — 2026-08-25
+
+| Scenario | Result |
+|---|---|
+| `stale-dependency` | 5/5 |
+| `current-briefing` | 5/5 |
+| `cant-verify` | 5/5 |
+| `manual` | 5/5 |
+| `no-stakes` | **negative** — 5/5 |
+
+Run against the harness as it stands here, rubric included. What this row settles: the widened
+description does **not** make the skill fire where it does not belong. That was the one risk the
+amendment carried, and it is the only part of a skill no deterministic check can substitute for.
+
+An earlier run the same morning reported `cant-verify` at 3/5. An A/B against the pre-amendment
+`socrates`, same harness and same judge, returned the identical profile — behaviour judged fully
+grounded 5/5 on both sides, the `verification_attempted` flag true 3/5 on both, the skill invoked
+0/5 on both. The amendment was not the cause: on a scenario that forbids tools, that flag decided
+the whole verdict and the rubric had buried the case that applies. The rubric now names it, and
+the row above is the run that followed.
+
+### `popper` — outstanding
+
+The last complete run, 2026-08-25, passed all five scenarios 5/5 including the negative
+`settled-work` — but under the previous rubric, whose `refutation_attempted` field was reworded
+immediately afterwards for the same reason as `socrates`. The re-run under the current rubric was
+cut short by an API quota after one scenario. No row is published for it: a reference number
+adossed to an instrument that has since changed is the failure this file exists to prevent.
+
+Note that this does not leave `popper`'s amendment unmeasured — the 11:56 run judged its behaviour
+fully calibrated 5/5 on every scenario. What is missing is a run whose *judge* matches the one in
+this repo today.
+
+### The substitute engine, and why it is not evidence
+
+While the API was rate-limited on 2026-08-24, a substitute validation was run and reported 30
+green cells. **It is not evidence for any row here, and it is not evidence about triggering.** Its
+runners were handed the `SKILL.md` text to follow, in sessions that were not neutralised — so the
+skill never had to fire on its own description, and local skills unrelated to this plugin were in
+scope. On the negative scenario the runners record `CONSULTED: none`: `socrates` was never a
+candidate to fire, so over-triggering went untested by the very run that claimed to have tested it.
 
 ## `setup` — no harness
 

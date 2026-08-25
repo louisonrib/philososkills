@@ -14,8 +14,13 @@ extract_skills() { # $1 = stream jsonl → one invoked skill per line
          select(.type=="tool_use" and .name=="Skill") | .input.skill' "$1"
 }
 
-extract_final_text() { # $1 = stream jsonl → final text of the run
-  jq -r 'select(.type=="result") | .result // empty' "$1"
+extract_final_text() { # $1 = stream jsonl → final text of a run that ran
+  # is_error marks a run the CLI refused — rate limit, session limit. subtype
+  # stays "success" and .result carries the refusal text, so without this guard
+  # that text reaches the judge as the assistant's answer: on a negative
+  # scenario the judge sees no verification, and a dead run scores pass.
+  # Returning nothing lets the caller's empty-text check write "error" instead.
+  jq -r 'select(.type=="result" and (.is_error != true)) | .result // empty' "$1"
 }
 
 extract_tool_calls() { # $1 = stream jsonl → "ToolName: input-digest" per line
@@ -118,10 +123,17 @@ for f in scenarios/*.txt; do
   for r in $(seq 1 "$RUNS"); do run_one "$name" "$r" & done
   wait
   pass=$(cat "$OUT/$name"-r*.verdict 2>/dev/null | grep -cx pass || true)
+  errs=$(cat "$OUT/$name"-r*.verdict 2>/dev/null | grep -cx error || true)
   status=FAIL; [ "$pass" -ge "$PASS_MIN" ] && status=PASS
-  [ "$status" = "FAIL" ] && overall=1
-  echo "- **$name**: $status ($pass/$RUNS, min $PASS_MIN)" >> "$OUT/report.md"
-  echo "$name: $status ($pass/$RUNS)"
+  # A run that errored measured nothing. Folding it into FAIL reads as the
+  # skill regressing — which is what a rate-limited batch looked like on
+  # 2026-08-24: five FAIL (0/5) over 25 error verdicts. Never green, never a
+  # silent FAIL either.
+  note=""
+  if [ "$errs" -gt 0 ]; then status=ERROR; note=", $errs errored — not a behavioural result"; fi
+  [ "$status" = "PASS" ] || overall=1
+  echo "- **$name**: $status ($pass/$RUNS, min $PASS_MIN$note)" >> "$OUT/report.md"
+  echo "$name: $status ($pass/$RUNS$note)"
 done
 
 echo; echo "Report: $PWD/$OUT/report.md"

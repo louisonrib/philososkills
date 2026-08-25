@@ -42,8 +42,10 @@ Scope is the user's choice:
 - **project** — `./CLAUDE.md` or `./AGENTS.md`, committed with the repo, so
   it reaches everyone who clones it.
 
-Propose global when the user has not said: the disciplines govern how the
-agent works, not what the codebase is.
+When the user has not chosen, the files already there decide, in this order:
+a global one that exists takes it, then a project one, and if neither exists
+propose creating the global — the disciplines govern how the agent works, not
+what the codebase is.
 
 ## What to write
 

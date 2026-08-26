@@ -56,28 +56,29 @@ A skill fires on its own description, and that is the fragile link: a
 protocol the agent never loads is a protocol it never applies. To have all
 six in context from the first turn, run `/philososkills:setup-philososkills`.
 
-It picks the memory file your harness actually reads — `CLAUDE.md` under
-Claude Code, `AGENTS.md` elsewhere — asks for global or project scope and
-which disciplines, reads what is already there before writing anything, and
-keeps its block idempotent: re-running it updates, never duplicates. When the
-file is in a state it cannot edit with certainty, it says what it saw and
-hands the file back to you.
+It reads all four candidates — `CLAUDE.md` and `AGENTS.md`, global and
+project — reports what each one already holds, and asks which to write to:
+one, several, or one it creates for you. Its block is idempotent, so
+re-running updates it and never duplicates it. When a file is in a state it
+cannot edit with certainty, it says what it saw and hands that one back.
 
-By hand, under Claude Code, it is six lines in your `CLAUDE.md` — these
-paths for a marketplace install:
+By hand, under Claude Code, it is six lines in your `CLAUDE.md`, pointing
+wherever your install put the skills. `npx skills add` puts them here:
 
 ```
-@~/.claude/plugins/marketplaces/philososkills/skills/socrates/SKILL.md
-@~/.claude/plugins/marketplaces/philososkills/skills/popper/SKILL.md
-@~/.claude/plugins/marketplaces/philososkills/skills/heraclitus/SKILL.md
-@~/.claude/plugins/marketplaces/philososkills/skills/hippocrates/SKILL.md
-@~/.claude/plugins/marketplaces/philososkills/skills/occam/SKILL.md
-@~/.claude/plugins/marketplaces/philososkills/skills/epictetus/SKILL.md
+@~/.claude/skills/socrates/SKILL.md
+@~/.claude/skills/popper/SKILL.md
+@~/.claude/skills/heraclitus/SKILL.md
+@~/.claude/skills/hippocrates/SKILL.md
+@~/.claude/skills/occam/SKILL.md
+@~/.claude/skills/epictetus/SKILL.md
 ```
 
-An `@` line inlines the file it names, so the whole protocol reaches the
-session rather than a reminder that it exists, and that path follows the
-plugin as it updates. Leave a line out to keep that discipline on
+A marketplace install puts them under
+`~/.claude/plugins/marketplaces/philososkills/skills/<name>/SKILL.md`
+instead. An `@` line inlines the file it names, so the whole protocol reaches
+the session rather than a reminder that it exists, and either path follows
+the install as it updates. Leave a line out to keep that discipline on
 description-triggering alone. The six together add about 3 500 tokens to
 every session — the price of not depending on a trigger.
 

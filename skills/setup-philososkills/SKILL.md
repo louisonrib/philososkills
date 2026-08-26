@@ -40,7 +40,10 @@ Four candidates. **The user picks; you propose.**
 
 Any combination is legitimate, several at once included: someone running two
 harnesses on one repo wants both names, and someone with machine-wide
-defaults who also commits the rules for their team wants both scopes.
+defaults who also commits the rules for their team wants both scopes. Say one
+thing when they take a project target: it is committed like any tracked file,
+and an import path in it resolves only on a machine where philososkills sits
+at that same path.
 
 **A file that already exists is not a decision.** A global `CLAUDE.md` sits on
 nearly every machine — let one settle the target and the project scope is
@@ -79,6 +82,11 @@ confirm it is there before writing its path. If your own directory sits under
 a plugin **cache** (`…/cache/philososkills/philososkills/<version>/…`), write
 the marketplace clone's path instead: the cache is a fresh directory at every
 release, so a line pointing there loads nothing after the next update.
+
+**A broken `@` line fails silently.** The path stays in the file as ordinary
+text, nothing warns, and the protocol simply never arrives. That is why each
+path is read before it is written — and why a user who moves, uninstalls, or
+switches the kind of install should re-run this skill.
 
 ## Procedure
 
